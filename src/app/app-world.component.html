@@ -1,0 +1,4 @@
+<div *ngIf="isWorldLoaded"><h5>Steps taken so far: {{stepsTaken}}</h5></div>
+<div *ngIf="isWorldLoaded">
+  <button type="button" (click)="takeStep()">Next generation</button>
+</div>
