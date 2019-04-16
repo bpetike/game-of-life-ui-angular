@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {GameOfLifeService} from './app-data.service';
+import {Location} from './app-location.model';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   worldForm: FormGroup;
   selectedWorld: string;
   worldNames: string[];
-  data: Object[];
+  data: Location[];
   numberOfSteps: number;
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
   setWorld(worldName: string) {
     if (worldName.length > 0) {
       this.selectedWorld = worldName;
-      this.service.setWorld(worldName).subscribe((data: Object[]) => data.forEach(value => this.data.push(value)));
+      this.service.setWorld(worldName).subscribe((data: Location[]) => data.forEach(value => this.data.push(value)));
       console.log(this.data);
       this.service.getNumberOfSteps().subscribe((data: Object) => this.numberOfSteps = data['steps']);
     }
@@ -37,13 +38,13 @@ export class AppComponent implements OnInit {
 
   resetWorld() {
     this.data = [];
-    this.service.resetWorld(this.selectedWorld).subscribe((data: Object[]) => data.forEach(value => this.data.push(value)));
+    this.service.resetWorld(this.selectedWorld).subscribe((data: Location[]) => data.forEach(value => this.data.push(value)));
     this.service.getNumberOfSteps().subscribe((data: Object) => this.numberOfSteps = data['steps']);
   }
 
   onStep() {
     this.data = [];
-    this.service.step().subscribe((data: Object[]) => data.forEach(value => this.data.push(value)));
+    this.service.step().subscribe((data: Location[]) => data.forEach(value => this.data.push(value)));
     this.service.getNumberOfSteps().subscribe((data: Object) => this.numberOfSteps = data['steps']);
     console.log(this.data);
   }
