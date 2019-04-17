@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   resetWorld() {
     this.data = [];
     this.service.resetWorld(this.selectedWorld).subscribe((data: Location[]) => data.forEach(value => this.data.push(value)));
+    console.log(this.data);
     this.service.getNumberOfSteps().subscribe((data: Object) => this.numberOfSteps = data['steps']);
   }
 

@@ -1,4 +1,11 @@
 <div *ngIf="isWorldLoaded"><h5>Steps taken so far: {{stepsTaken}}</h5></div>
 <div *ngIf="isWorldLoaded">
   <button type="button" (click)="takeStep()">Next generation</button>
+  <table>
+    <tr *ngFor="let row of grid">
+      <td *ngFor="let cell of row" width="10" class="cell">
+        {{cell > 0 ? '■' : ' '}}
+      </td>
+    </tr>
+  </table>
 </div>
